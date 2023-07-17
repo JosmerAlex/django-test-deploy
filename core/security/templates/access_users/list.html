@@ -1,0 +1,46 @@
+{% extends 'list.html' %}
+{% load static %}
+
+{% block columns %}
+    <tr>
+        <th scope="col">Nº</th>
+        <th scope="col">USUARIO</th>
+        <th scope="col">FECHA DE REGISTRO</th>
+        <th scope="col">HORA</th>
+        <th scope="col">DIRECCIÓN IP</th>
+        <th scope="col">NAVEGADOR</th>
+        <th scope="col">DISPOSITIVO</th>
+        <th scope="col">TIPO DE ACCESO</th>
+        <th scope="col">OPCIONES</th>
+    </tr>
+{% endblock %}
+
+{% block rows %}
+
+{% endblock %}
+
+{% block content_list_before %}
+<div class="row">
+    <div class="col-lg-5">
+        <div class="form-group">
+            <label><i class="far fa-calendar-alt"></i> Rangos de fechas:</label>
+            <div class="input-group">
+                {{ form.date_range }}
+                <div class="input-group-append">
+                    <button class="btn btn-sm btnSearch thumbnail input" style="background-color: #148ff3;" type="button">
+                        <i class="fas fa-calendar-check"></i> Buscar por rangos
+                    </button>
+                    <button class="btn btn-sm btnSearchAll thumbnail input-flat" style="background-color: #699ac9; border-left: 1px solid #ffffff;" type="button">
+                        <i class="fas fa-calendar-check" style="color: white;"></i> Ver todas
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+{% endblock %}
+
+{% block javascript_list %}
+<script src="{% static 'access_users/js/list.js' %}"></script>
+{% endblock %}

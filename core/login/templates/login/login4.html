@@ -1,0 +1,113 @@
+{% extends 'login/base.html' %} 
+{% load widget_tweaks %} 
+{% block content %} 
+{% load static %} 
+
+{% block head %}
+<head>
+  <link rel="stylesheet" href="{% static 'css/style3.css' %}"/>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet"/>
+  <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+{% endblock %}
+
+<img class="wave" src="/static/img/wave3.png" />
+<div class="container">
+  <div class="img">
+    <img src="/static/img/box-b2.svg" />
+  </div>
+  <div class="login-content">
+    <form class="form" action="." method="post">
+      <input type="hidden" name="next" value="{{ next }}" />
+      {% csrf_token %}
+      <img class="mb-3" src="/static/img/avatar.svg" />
+      <!-- <h2 class="title">Inicie Sesión</h2> -->
+      <h2 class="title">Bienvenido</h2>
+      <div class="input-div one">
+        <div class="i">
+          <i class="fas fa-user"></i>
+        </div>
+        <div class="div">
+          <h5>Usuario</h5>         
+            {{ form.username|add_class:'input' }}               
+        </div>
+      </div>
+      <div class="input-div pass">
+        <div class="i">
+          <i class="fas fa-lock"></i>
+        </div>
+        <div class="div">
+          <h5>Contraseña</h5>
+          <div class="float-right"></div>               
+            {{ form.password|add_class:'input' }}
+        </div>        
+      </div>
+      <div class="view" style="display:ruby;">
+        <div class="fas fa-eye viewPassword text-muted vs"></div>
+      </div>
+      <a href="{% url 'usuarios_app:reset_password' %}" class="mt-2">Olvido su contraseña <i class="fas fa-key"></i>?</a>
+      <button type="submit" class="btn btn-primary">
+        <i class="fas fa-sign-in-alt"></i> Iniciar sesión
+      </button>
+    </form>
+  </div>
+</div>
+<script>
+  var passwordField = document.getElementById("password");
+  var toggleButton = document.getElementsByClassName("viewPassword")[0];
+  var view = document.getElementsByClassName("view")[0];  
+
+  toggleButton.addEventListener("click", () => {
+    if (passwordField.type === "password") {
+      passwordField.type = "text";
+      toggleButton.classList.remove("fa-eye");
+      toggleButton.classList.add("fa-eye-slash");
+    } else {
+      passwordField.type = "password";
+      toggleButton.classList.remove("fa-eye-slash");
+      toggleButton.classList.add("fa-eye");
+    }
+})
+passwordField.addEventListener('change keyup', function () {
+    view.style.display = 'ruby'
+  });
+</script>
+<script type="text/javascript">
+    //Para el efecto focus del input
+    const inputs = document.querySelectorAll(".input");
+    function addcl(){
+        let parent = this.parentNode.parentNode;
+        parent.classList.add("focus");
+    }
+    function remcl(){
+        let parent = this.parentNode.parentNode;
+        if(this.value == ""){
+            parent.classList.remove("focus");
+        }
+    }
+    inputs.forEach(input => {
+        input.addEventListener("focus", addcl);
+        input.addEventListener("blur", remcl);
+    });
+    //Para visualizar el password
+</script>
+<script type="application/javascript">
+  {% if form.errors %}
+      var errors = '';
+      {#                {% for field in form %}#}
+      {#                    {% for error in field.errors %}#}
+      {#                        errors += '{{ error }}\n';#}
+      {#                    {% endfor %}#}
+      {#                {% endfor %}#}
+      {% for error in form.non_field_errors %}
+          errors += '{{ error }}\n';
+      {% endfor %}
+      Swal.fire({
+          title: 'Error!',
+          text: errors,
+          icon: 'error'
+      });
+  {% endif %}
+</script>
+{% endblock %}

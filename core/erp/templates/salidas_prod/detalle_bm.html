@@ -1,0 +1,87 @@
+<div class="modal fade" id="myModalDetProd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form id="frmDetProd" action="."  method="post" enctype="multipart/form-data">
+        <div class="modal-dialog modal-lg" style="max-width: 85%;" role="document">
+            <div class="modal-content">
+                <div class="modal-header py-2 h-blue"> 
+                    <h5 class="modal-title title-custom" id="modaltitledetalleproduc">
+                        <b style="color:white;"><i class="fas fa-search" style="color:white;"></i>  <span> gg </span></b>
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                <div class="modal-body">
+                    <div class="row mt-2" style="font-size: 13px; font-family: sans-serif;">
+						<div class="col-12">
+                            <div class="form-group clearfix">                                
+                                <div class="d-inline">
+                                    <span style="font-weight: bold;">Tipo de Distribución: </span>
+                                    <span id="tipo_distrib"></span>
+                                 </div>                                
+                                <div class="d-inline" style="margin-left: 20px;">
+                                    <span style="font-weight: bold;">Tipo de Comprobante:</span>
+                                    <span id="t_comprob"></span>
+                                 </div>
+                                 <div class="d-inline" style="margin-left: 20px;">
+                                    <span style="font-weight: bold;">Nº Comprobante:</span>
+                                    <span id="nro_comprob"></span>
+                                 </div>                                 
+                                <div class="d-inline" style="margin-left: 20px;">
+                                    <span style="font-weight: bold;">Fecha:</span>
+                                    <span id="fecha"></span>
+                                </div>
+                            </div>
+                        </div>							
+					</div>
+                    <div class="row mt-1" style="font-size: 13px; font-family: sans-serif;">
+                        <div class="col-12">
+                            <div class="form-group clearfix">
+                                <div class="d-inline">
+                                    <span style="font-weight: bold;">Origen: </span>
+                                    <span id="origen"></span>
+                                </div>
+                                <div class="d-inline" style="margin-left: 20px;">
+                                    <span style="font-weight: bold;" style="margin-left: 20px;">Destino: </span>
+                                    <span id="destino"></span>
+                                </div>  
+                                <div class="d-inline" style="margin-left: 20px;">
+                                    <span style="font-weight: bold;">Usuario:</span>
+                                    <span id="usuario"></span>
+                                </div>                            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-1 mb-2" style="font-size: 13px; font-family: sans-serif;">
+                        <div class="col-12">
+                            <div class="form-group clearfix">
+                                <div class="d-inline">
+                                    <span style="font-weight: bold;">Observación: </span>
+                                    <span id="obs"></span>
+                                </div>                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scroll-h">
+                        <table class="table table-bordered max-cont table-hover table-sm" id="tblDetalleProd">
+                            <thead>
+                            <tr>
+                                <th scope="col" style="width: 18%; font-size: 12px;">PRODUCTO</th>
+                                <th scope="col" style="width: 26%; font-size: 12px;">DESCRIPCIÓN</th>
+                                <th scope="col" style="width: 17%; font-size: 12px;">CATEGORÍA</th>
+                                <th scope="col" style="width: 9%; font-size: 12px;">PRECIO</th>
+                                <th scope="col" style="width: 19%; font-size: 12px;">UBICACIÓN FÍSICA</th>
+                                <th scope="col" style="width: 11%; font-size: 12px;">CÓDIGO DE BIEN</th>
+                            </tr>
+                            </thead>
+                            <tbody style="font-size: 12px;">
+                            </tbody>
+                        </table>
+                    </div>                    
+                </div>
+                <div class="card-footer py-1 text-center" style="background-color: #EFEBE9;">
+                    
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

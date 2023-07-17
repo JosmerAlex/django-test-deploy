@@ -1,0 +1,27 @@
+{% extends 'list.html' %}
+{% load static %}
+
+{{% block columns %}
+    <tr style="font-size: 12px;">
+        <th scope="col" style="width: 9%;">CODIGO</th>
+        <th scope="col" style="width: 21%;">NOMBRE</th>
+        <th scope="col" style="width: 5%;">IMG</th>        
+        <th scope="col" style="width: 20%;">CATEGORIA</th>
+        <th scope="col" style="width: 12%;">MARCA</th>
+        <th scope="col" style="width: 16%;">MODELO</th>
+        <th scope="col" style="width: 5%;">ESTADO</th>
+        <th scope="col" style="width: 12%;">OPCIONES</th>
+    </tr>
+{% endblock %}
+
+{% block add_modales %}
+
+{% include './detail.html' %}
+
+{% endblock %}
+
+{% block javascript_list %} 
+
+    <script src="{% static 'product/js/list.js' %}"></script>
+
+{% endblock %}

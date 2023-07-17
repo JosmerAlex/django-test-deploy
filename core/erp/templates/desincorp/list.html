@@ -1,0 +1,87 @@
+{% extends 'list.html' %}
+{% load static %}
+{% block columns %}
+    <tr style="font-size: 12px;">
+        <th scope="col" style="width: 3%;">Nº</th>
+        <th scope="col" style="width: 13%;">CÓDIGO</th>
+        <th scope="col" style="width: 26%;">TIPO DE DESINCORPORACIÓN</th>
+        <th scope="col" style="width: 26%;">ORIGEN</th>        
+        <th scope="col" style="width: 10%;">FECHA.</th>
+        <th scope="col" style="width: 10%;">STATUS</th>
+        <th scope="col" style="width: 12%;">OPCIONES</th>
+    </tr>
+{% endblock %}
+
+{% block add_modales %}
+    <div id="mostrarmodalDetProdDesinc">
+        <div class="modal fade" id="myModalDetProdDesinc" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <form id="frmDetProdDesinc" action="."  method="post" enctype="multipart/form-data" style="line-height: 12px;">
+                <div class="modal-dialog" style="max-width: 85%;" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header py-1" style="background-color: #6c8ba8;">
+                        <h5 class="modal-title"  id="modaltitledetalleproducdesinc" style="color:white;">
+                                <b><i class="fas fa-shopping-cart" style="color:#80deea"></i>  <span>  </span></b>
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="scroll-h">
+                                <table class="table table-bordered max-cont table-hover table-sm" style="font-size: 12px;" id="tblDetalleProdDesinc" width="100%">
+                                    <thead style="background-color: #6c8ba8;">
+                                        <tr>
+                                            <th scope="col" style="width: 40%; font-size: 12px;">Producto</th>
+                                            <th scope="col" style="width: 15%; font-size: 12px;">Precio</th>
+                                            <th scope="col" style="width: 16%;; font-size: 12px;">Codigo de Bien Nacional</th>
+                                            <th scope="col" style="width: 20%; font-size: 12px;">Ubicicación Física.</th>
+    
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>                            
+                        </div>
+                        <div class="card-footer py-1 text-center" style="background-color: #EFEBE9;">
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+{% endblock %}
+
+
+{% block javascript_list %} 
+    <script src="{% static 'desincorp/js/list.js' %}" type="text/javascript"></script>
+{% endblock %}
+
+{% block content_list_before %}
+<div class="row">
+    <div class="col-lg-4">
+        <div class="form-group">
+            <label><i class="far fa-calendar-alt"></i> Rangos de fechas:</label>
+            <div class="input-group">
+                {{ form.date_range }}
+                <div class="input-group-append">
+                    <button class="btn btn-sm btn-primary" data-toggle="dropdown"  type="button">
+                        <i class="fas fa-sort-amount-down"></i> Filtrar
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-left">
+                        <a class="dropdown-item btnSearch">
+                            <i class="fas fa-calendar-check"></i> Por rangos de fechas
+                        </a>                                    
+                        <a class="dropdown-item btnSearchAll">
+                            <i class="fas fa-calendar-check"></i> Ver todos los registros
+                        </a>
+                    </div>                           
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+{% endblock %}

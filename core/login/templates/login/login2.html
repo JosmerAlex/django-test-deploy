@@ -1,0 +1,59 @@
+{% extends 'login/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+{% load static %}
+
+{% block head %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+{% endblock %}
+
+    <div class="container">
+        <div class="info">
+          <p class="txt-1">Gracias por Visitarnos</p>
+          <h2>Bienvenido de Nuevo</h2>
+          <hr />
+        </div>
+        <form class="form" action="." method="post">
+            <input type="hidden" name="next" value="{{ next }}">
+            {% csrf_token %}
+          <h2>Inicio de Sesión</h2>        
+          <div class="inputs">
+            <div class="input-group">
+                {{ form.username|add_class:'box'|attr:'autocomplete:off' }}                
+            </div>
+
+            <div class="input-group">
+                {{ form.password|add_class:'box'|attr:'autocomplete:off' }}                
+            </div>  
+            <button type="submit" class="btn btn-primary btn-block rounded-pill">
+                <i class="fas fa-sign-in-alt"></i> Iniciar sesión
+            </button>
+            <a href="{% url 'usuarios_app:reset_password' %}">Olvidaste tu contraseña <i class="fas fa-key"></i>?</a>
+  
+          </div>
+        </form>
+      </div>
+    <script type="application/javascript">
+        {% if form.errors %}
+            var errors = '';
+            {#                {% for field in form %}#}
+            {#                    {% for error in field.errors %}#}
+            {#                        errors += '{{ error }}\n';#}
+            {#                    {% endfor %}#}
+            {#                {% endfor %}#}
+            {% for error in form.non_field_errors %}
+                errors += '{{ error }}\n';
+            {% endfor %}
+            Swal.fire({
+                title: 'Error!',
+                text: errors,
+                icon: 'error'
+            });
+        {% endif %}
+    </script>
+
+   
+    
+{% endblock %}

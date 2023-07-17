@@ -1,0 +1,292 @@
+{% extends 'body.html' %} 
+
+{% load static %} 
+
+{% block head %}
+<script src="{% static 'lib/highcharts-8.1.2/highcharts.js' %}"></script>
+<script src="{% static 'lib/highcharts-8.1.2/modules/exporting.js' %}"></script>
+<script src="{% static 'lib/highcharts-8.1.2/modules/export-data.js' %}"></script>
+<script src="{% static 'lib/highcharts-8.1.2/modules/accessibility.js' %}"></script>
+{% endblock head %} 
+
+{% block title %}
+<div class="col-sm-6">
+  <h4 class="m-0" style="font-family: sans-serif">
+    <!-- <i class="fas fa-border-all animation__shake" style="color: #000000;"></i> -->
+    {{title}}
+  </h4>
+</div>
+
+<!-- <div class="box user-widget-card mt-5 cascading-modal"> 
+  <div class="info-box shadow-sm text-secondary">
+    <div class="card-c-header mb-2">
+      <ul class="md-header shadow-sm light-blue darken-3 d-flex align-items-left justify-content-left text-white">
+        <i class="fas fa-dolly-flatbed"></i>     
+      </ul>       
+    </div>     
+    <div class="info-box-content">
+      <span class="info-box-number"><h5 class="font-light float-right mr-1">
+        <span class="badge badge-primary badge-pill">26</span>
+      </h5></span>
+      <span class="info-box-text">Incorporaciones por Aprobar</span>
+
+      <div class="progress" style="background-color: rgba(31, 149, 228, 0.625);">
+        <div class="progress-bar" style="width: 70%;"></div>
+      </div>
+      <span class="progress-description">
+        <a href="{% url 'erp:aprobingre_list' %}" class="text-sm link-info text-info text-center" style="border-bottom: 2px solid rgba(31, 149, 228, 0.625);">Mas Infor..</a>
+      </span>
+    </div>
+  </div>
+</div>   -->
+
+{% endblock title %} 
+
+{% block content %}
+<div class="row mt-2">  
+  <div class="col-md-6 col-lg-3">
+    <div class="card box-move user-widget-card bg-c-blue border-0" style="height: 120px;">
+      <div class="card-block text-white">
+        <i class="feather bg-simple-c-blue card1-icon"><i class="fas fa-dolly-flatbed"></i></i>
+        <h4 class="mt-3">{{incorp.count}}</i></h4>
+        <p>Incorporaciones por Aprobar</p>
+        <a href="" class="more-info">Mas Infor..</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-3">
+    <div class="card box-move user-widget-card bg-c-green border-0" style="height: 120px;">
+      <div class="card-block text-white">
+        <i class="feather bg-simple-c-green card1-icon"><i class="fas fa-shipping-fast"></i></i>
+        <h4 class="mt-3">{{dist.count}}</h4>
+        <p>Distribuciones por Aprobar</p>
+        <a href="" class="more-info">Mas Infor..</a>
+      </div>
+    </div>
+  </div>  
+  <div class="col-md-6 col-lg-3">
+    <div class="card box-move user-widget-card bg-c-yellow border-0" style="height: 120px;">
+      <div class="card-block text-white">
+        <i class="feather bg-simple-c-yellow card1-icon"><i class="fas fa-exchange-alt"></i></i>
+        <h4 class="mt-3">{{tras.count}}</h4>
+        <p>Traslados por Aprobar</p>
+        <a href="" class="more-info">Mas Infor..</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-3">
+    <div class="card box-move user-widget-card bg-c-red border-0" style="height: 120px;">
+      <div class="card-block text-white">
+        <i class="feather bg-simple-c-red card1-icon"><i class="fas fa-unlink"></i></i>
+        <h4 class="mt-3">{{desinc.count}}</h4>
+        <p>Desincorporaciones por Aprobar</p>
+        <a href="" class="more-info">Mas Infor..</a>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="col-md-6 col-lg-3">
+    <div class="card card-hover border-0">
+      <div class="box bg-c-red text-center" style="background-color: #fd4e4e">
+        <h1 class="font-light text-white mt-3">
+          <i class="fas fa-unlink"></i>
+          <span class="ml-2">{{desinc.count}}</span>
+        </h1>
+        <h6 class="text-white mb-3">Desincorporaciones por Aprobar</h6>
+      </div>
+    </div>
+  </div> -->
+</div>
+<!-- <div class="row">
+    <div class="col-lg-3 col-6">     
+      <div class="small-box bg-gradient text-white" style="background-color: #089eda;"> 
+        <div class="inner">
+          <h3>{{incorp.count}}</h3>
+          <h6>Incorporaciones por Aprobar</h6>
+        </div>
+        <div class="icon">
+          <i class="fas fa-dolly-flatbed"></i>
+        </div>
+        <a href="{% url 'erp:aprobingre_list' %}" class="small-box-footer">Mas Infor.... <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <div class="col-lg-3 col-6">
+      <div class="small-box bg-gradient text-white" style="background-color: #00bc8c;">
+        <div class="inner">
+          <h3>{{dist.count}}<sup style="font-size: 20px"></sup></h3>
+          <h6>Distribuciones por Aprobar</h6>
+        </div>
+        <div class="icon">
+          <i class="fas fa-shipping-fast"></i>
+        </div>
+        <a href="{% url 'erp:aprobdist_list' %}" class="small-box-footer">Mas infor. <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <div class="col-lg-3 col-6">
+      <div class="small-box bg-gradient text-white" style="background-color: #fdb211;">
+        <div class="inner text-white">
+          <h3>{{tras.count}}</h3>
+          <h6>Traslados por Aprobar</h6>          
+        </div>
+        <div class="icon">
+          <i class="fas fa-exchange-alt"></i>
+        </div>
+        <a href="{% url 'erp:aprobtras_list' %}" class="small-box-footer">Mas infor. <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <div class="col-lg-3 col-6">
+      <div class="small-box bg-gradient text-white" style="background-color: #e74c3c;">
+        <div class="inner">
+          <h3>{{desinc.count}}</h3>
+          <h6>Desincorporaciones por Aprobar</h6>
+        </div>
+        <div class="icon">
+          <i class="fas fa-unlink"></i>
+        </div>
+        <a href="{% url 'erp:aprobdesinc_list' %}" class="small-box-footer">Mas infor. <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+  </div> -->
+<div class="row">
+  <div class="col-12">        
+    <div class="card input-flat">
+      <div class="card-header">
+        <h5 class="card-title text-dark">
+          <i class="fas fa-dolly-flatbed"></i>
+          <b> Reporte de Incorporaciones del Año {{year}} </b>
+        </h5>
+      </div>
+      <div class="card-body" style="padding: 14px 10px 10px 10px;">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-9">
+              <div id="container"></div>
+            </div>
+            <div class="col-md-3">
+              <!-- Info Boxes Style 2 -->
+              <div class="info-box box-move mb-3 text-white" style="background-color: #199ce3">
+                <a class="info-box-icon text-white" href="{% url 'user:user_list' %}"><i class="far fa-user"></i></a>
+          
+                <div class="info-box-content mr-2">
+                  <span class="info-box-text">Usuarios Registrados</span>
+                  <span class="info-box-number">{{users.count}}</span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+              <div class="info-box box-move mb-3 text-white" style="background-color: #0ac282">
+                <span class="info-box-icon"><i class="far fa-bookmark"></i></span>
+          
+                <div class="info-box-content">
+                  <span class="info-box-text">Productos en Catálogo</span>
+                  <span class="info-box-number">{{products.count}}</span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+              <div class="info-box box-move mb-3 text-white" style="background-color: #f5ad50">
+                <span class="info-box-icon"><i class="far fa-calendar-check"></i></span>
+          
+                <div class="info-box-content mr-2">
+                  <span class="info-box-text">Solicitudes Atendidas</span>
+                  <span class="info-box-number">114,381</span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+              <div class="info-box box-move mb-3 text-white" style="background-color: #e95646">
+                <span class="info-box-icon"><i class="far fa-calendar-times"></i></span>
+          
+                <div class="info-box-content">
+                  <span class="info-box-text">Solicitudes Rechazadas</span>
+                  <span class="info-box-number">163,921</span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+          </div>
+        </div>
+      </div>      
+    </div>
+  </div>
+  
+</div>
+{% endblock content %} {% block javascript %}
+<script type="application/javascript">
+  // var today = new Date();
+  // var year = today.getFullYear();
+  var graphcolumn = Highcharts.chart("container", {
+    chart: {
+      type: "column",
+    },
+    title: {
+      text: "Reporte de columnas",
+    },
+
+    xAxis: {
+      categories: [
+        "Enero",
+        "Febrero",
+        "Marzo",
+        "Abril",
+        "Mayo",
+        "Junio",
+        "Julio",
+        "Agosto",
+        "Septiembre",
+        "Octubre",
+        "Noviembre",
+        "Diciembre",
+      ],
+      crosshair: true,
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: "",
+      },
+    },
+    tooltip: {
+      headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+      pointFormat:
+        '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+        '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+      footerFormat: "</table>",
+      shared: true,
+      useHTML: true,
+    },
+    plotOptions: {
+      column: {
+        pointPadding: 0.2,
+        borderWidth: 0,
+      },
+    },
+  });
+
+  function get_graph_incorp_year_month() {
+    $.ajax({
+      url: window.location.pathname, //window.location.pathname
+      type: "POST",
+      data: {
+        action: "get_graph_incorp_year_month",
+      },
+      dataType: "json",
+    })
+      .done(function (data) {
+        if (!data.hasOwnProperty("error")) {
+          graphcolumn.addSeries(data);
+          return false;
+        }
+        message_error(data.error);
+      })
+      .fail(function (jqXHR, textStatus, errorThrown) {
+        alert(textStatus + ": " + errorThrown);
+      })
+      .always(function (data) {});
+  }
+
+  $(function () {
+    get_graph_incorp_year_month();
+  });
+</script>
+{% endblock javascript %}

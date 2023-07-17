@@ -1,0 +1,39 @@
+<div class="modal fade" id="permissionsModal" tabindex="-1" role="dialog"
+   aria-labelledby="permissionsModalTitle" aria-hidden="true">
+   <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+         <div class="modal-header h-blue text-white py-2">
+            <h5 class="modal-title title-custom" id="permissionsModalTitle"><b><i class="fas fa-search"></i> Búsqueda de Permisos</b></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">×</span>
+            </button>
+         </div>
+         <div class="modal-body">   
+            <div class="scroll-h">
+               <div class="scroll-v">
+                  <button class="btn btn-primary btn-sm rounded-pill" id="seleccionar"><i class="fas fa-check-circle"></i> Seleccionar todos</button>
+                  <button class="btn btn-secondary btn-sm rounded-pill" id="deseleccionar"><i class="fas fa-check-circle"></i> Deseleccionar todos</button>                
+                  <div id="data">
+                     <table id="permsTable" class="table table-hover max-cont border-top display">
+                        <thead>
+                           <tr>   
+                             <th scope="col" style="width: 10%;">SELECT</th>                  
+                             <th scope="col" style="width: 90%;">PERMISOS <span class="badge badge-primary badge-pill f-11" id="numPerms"></span></th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <!--PERMISOS-->
+                        </tbody>
+                     </table>
+                  </div>                  
+               </div>   
+            </div>  
+                          
+         </div>
+         <div class="modal-footer py-2">
+            <button type="button" class="btn btn-primary btn-sm elevation-1" id="assignPerms"><i class="fas fa-save"></i> Asignar permisos</button>
+            <button type="button" class="btn btn-secondary btn-sm elevation-1" data-dismiss="modal"><i class="fas fa-sign-out-alt"></i> Cerrar</button>
+         </div>
+      </div>
+   </div>
+</div>

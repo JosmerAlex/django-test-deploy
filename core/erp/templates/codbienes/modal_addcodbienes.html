@@ -1,0 +1,65 @@
+{% load widget_tweaks %}
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/modal_style.css' %}">
+</head>
+<div class="modal fade" id="myModalCodbienes" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right: 17px;">
+    <form id="frmCodbienes" action="."  method="post" enctype="multipart/form-data">
+        <div class="modal-dialog cascading-modal mt-5" role="document">
+            <div class="modal-content">
+      
+              <div class="modal-c-header">      
+                <ul class="md-h md-header tabs-2 light-blue darken-3 d-flex align-items-center justify-content-center">
+                    <h6 class="modal-title md-h title-custom text-white" id="titlecodbienes">
+                        <b><i class="fas fa-plus"></i> <span> gg </span></b>
+                    </h6>
+                </ul>      
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        {% csrf_token %}
+                        <input name="action" type="hidden" value="add">
+                        <input name="id" id="id" type="hidden" value="0">                        
+                        <div class="row"> 
+                            <div class="col-12"> 
+                                <div class="form-group input-group-sm">
+                                    <div class="txt_field">
+                                        {{ frmCodBien.codbien }}  
+                                        <span class="focus-border"></span>
+                                        <label>Código de Bien Nacional</label>     
+                                    </div>                                                                     
+                                </div>
+                                <div class="form-group input-group-sm">
+                                    <div class="txt_field">
+                                        {{ frmCodBien.procedencia }}  
+                                        <span class="focus-border"></span>
+                                        <label>Unidad Central</label>     
+                                    </div>                                               
+                                </div>
+                                <div class="form-group input-group-sm" >
+                                    <div class="txt_field">
+                                        {{ frmCodBien.unidad_admin }}  
+                                        <span class="focus-border"></span>
+                                        <label>Unidad Local</label>     
+                                    </div>                                          
+                                </div>                                    
+                                <div class="form-group input-group-sm" >
+                                    <div class="txt_field">
+                                        {{ frmCodBien.estado }}
+                                        <span class="focus-border"></span>
+                                        <label>Estado de Disponibilidad</label>     
+                                    </div>
+                                </div>                                
+                            </div>    
+                        </div>                       
+                    
+                    </div>
+                </div>
+              <div class="modal-footer mb-2 py-0 border-0 d-flex align-items-center justify-content-center">
+                <button type="submit" class="btn btn-primary btn-bord"><i class="fas fa-save"></i> Guardar</button>
+                <button type="button" data-dismiss="modal" class="btn btn-secondary btn-bord"><i class="fas fa-sign-out-alt"></i> Salir</button>      
+              </div>
+            </div>
+          </div>
+    </form>
+</div>
+

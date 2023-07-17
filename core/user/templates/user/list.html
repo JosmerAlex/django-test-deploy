@@ -1,0 +1,28 @@
+{% extends 'list.html' %}
+{% load static %}
+
+{% block columns %}
+    <tr style="font-size: 12px;">        
+        <th scope="col" style="width: 8%;">IMAGEN</th>
+        <th scope="col" style="width: 21%;">NOMBRES</th>
+        <th scope="col" style="width: 16%;">USERNAME</th>
+        <th scope="col" style="width: 8%;">ESTADO</th>
+        <th scope="col" style="width: 15%;">FECHA DE REGISTRO</th>
+        <th scope="col" style="width: 16%;">GRUPOS</th>
+        <th scope="col" style="width: 15%;">OPCIONES</th>
+    </tr>
+{% endblock %}
+
+{% block rows %}
+
+{% endblock %}
+
+{% block add_modales %}
+
+{% include 'user/modal_detail.html' %}
+{% include 'user/access_users.html' %}
+{% endblock %}
+
+{% block javascript_list %}
+<script src="{% static 'user/js/list.js' %}"></script>
+{% endblock %}

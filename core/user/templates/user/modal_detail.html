@@ -1,0 +1,140 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'user/css/table_scroll.css' %}">
+</head>
+
+<div class="modal fade" id="detalle_user" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header py-2 h-blue">
+				<h5 class="modal-title title-custom text-white" id="detail_user"><b><i class="fas fa-info-circle"></i></i> Información del Usuario</b></h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+			</div>                     			  
+			<div class="modal-body">
+                <div class="container">
+                    <div class="row"> 
+                        <div class="col">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+								<li class="nav-item">
+								  <a type="button" class="nav-link active btn-effect text-secondary" id="btn_datos" data-target="#nav_datos" href="#" data-toggle="tab" role="tab" aria-controls="nav_datos" aria-selected="true"><i class="fas fa-user-edit"></i> Datos del Usuario</a>
+								</li>
+								<li class="nav-item">
+								  <a type="button" class="nav-link btn-effect text-secondary" id="btn_perms" data-target="#nav_perms" href="#" data-toggle="tab" role="tab" aria-controls="nav_perms" aria-selected="true"><i class="fas fa-layer-group"></i> Permisos</a>
+								</li>
+							</ul>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav_datos" role="tabpanel" aria-labelledby="nav-datos-tab">
+                            <div class="row mt-3" >
+                                <div class="col-12">			 
+                                    <div class="user-panel mt-2 pb-2 mb-3 d-flex align-items-center justify-content-center">                  
+                                        <div class="image">                    
+                                            <span id="image"></span>
+                                        </div>              
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">                                        
+                                        <span style="font-weight: bold;">Nombre de Usuario: </span>
+                                        <span id="username"></span>
+                                    </div>                                
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">                                        
+                                        <span style="font-weight: bold;">Nombre: </span>
+                                        <span id="first_name"></span>
+                                    </div>                                
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">                                        
+                                        <span style="font-weight: bold;">Apellido: </span>
+                                        <span id="last_name"></span>
+                                    </div>                                
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">                                        
+                                        <span style="font-weight: bold;">Cedúla: </span>
+                                        <span id="dni"></span>
+                                    </div>                                
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">                                        
+                                        <span style="font-weight: bold;">Email: </span>
+                                        <span id="email"></span>
+                                    </div>                                
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">                                        
+                                        <span style="font-weight: bold;">Estado: </span>
+                                        <span id="active"></span>
+                                    </div>                                
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">                                        
+                                        <span style="font-weight: bold;">Fecha de Registro: </span>
+                                        <span id="fecha"></span>
+                                    </div>                                
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">                                        
+                                        <span style="font-weight: bold;">Último Inicio de Sesión: </span>
+                                        <span id="sesion"></span>
+                                    </div>                                
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav_perms" role="tabpanel" aria-labelledby="nav-perms-tab">
+                            <div class="row mt-4">
+                                <div class="col-12">
+                                    <div class="form-group">                                        
+                                        <label class="ml-1">Rol de Sistema: </label>
+                                        <li id="grupo"></li>                              
+                                    </div>                                
+                                </div>
+                            </div>                            
+                            <div class="row mt-2">
+                                <div class="col-12">    
+                                    <div class="scroll-h">
+                                        <div class="scroll-v">
+                                            <table class="table table-hover border-top display" id="tblPermsUser">
+                                                <thead>
+                                                <tr>
+                                                    <th scope="col" style="width: 10%;">Nº</th>
+                                                    <th scope="col" style="width: 90%;">PERMISO</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody class="sad" style="font-size: 14px;">
+                                                </tbody>
+                                            </table>
+                                        </div>  
+                                    </div>                                
+                                                                                                         
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>                                                                                
+                    <!-- /.row -->                        
+                </div>														
+			</div>                      
+		</div>
+	</div>
+</div>

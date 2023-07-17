@@ -1,0 +1,302 @@
+{% extends 'componentes/form.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block head_form %}
+  <style>
+    ul.select2-results__options li{
+        font-size:11px;
+        line-height: 12px;
+        padding: 0px;
+        margin: 0px;
+    }
+    .select2-selection__rendered {
+       line-height: 25px !important;
+    }
+    .select2-container .select2-selection--single {
+        height: 30px !important;
+        border-radius: 0px !important;
+    }
+    .table .thead-dark2 th{
+    color: #fff !important;
+    background: #343a40 !important;
+    }        
+    .table th {
+    color: #222a42b3;
+    text-align: inherit;
+    vertical-align: top;
+    }
+    .table thead th {
+    vertical-align: middle;
+    font-size: 12px;
+    border-top: 1px solid #f5f5f5;
+    border-bottom: 1px solid #d4d4d4!important;
+    padding-top: 0.560rem;
+    padding-bottom: 0.560rem;
+    line-height: 1;
+    }
+    .table>tbody>tr>td {
+    vertical-align: middle;
+    padding-top: 0.325rem;
+    padding-bottom: 0.325rem;
+    }
+    .table-wrapper {
+        max-height: calc(100vh - 210px);
+        overflow-y: auto !important;
+    }
+    .table-wrapper table {       
+        border-collapse: separate;
+        border-spacing: 0px;   
+        border-top: 1.5px solid #dddddd;
+    }
+    .table-wrapper table th{
+        position: sticky; 
+        background-color: #ffffff;        
+        top: 0px;
+        text-align: center;
+    } 
+    .modal-body {
+        max-height: calc(100vh - 210px);
+        overflow-y: auto;
+    }    
+  </style>
+{% endblock %}
+
+{% block content %}
+<form id="frmIngresoprod" method="post" style="font-size: 11px;">
+    <div class="card">
+        {% csrf_token %}
+        <div class="card-body pt-3">
+            <input type="hidden" name="action" value="{{action}}">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="form-group input-group-sm">                        
+                        <label for="codigo" class="text-muted" style="margin-bottom: 0px;">CODIGO</label>
+                        {{form.cod_ingreso|attr:"autocomplete:off"}}
+
+                            {% for error in form.cod_ingreso.errors %}
+                                <p class="cell alert alert-danger">
+                                    {{ error|escape }}
+                                </p>
+                            {% endfor %}
+                    </div>
+                </div> 
+                <div class="col-sm-4">
+                    <div class="form-group input-group-sm">
+                        <label for="tipo_ingreso" class="text-muted" style="margin-bottom: 0px;">TIPO DE INCORPORACIÓN:</label>
+                        <div class="input-group">
+                            {{ form.tipo_ingreso }}
+                            <div class="input-group-append">
+                                <button class="btn btn-sm btn-primary btnAddConcep btn-flat" type="button" style="height: 29px;">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>                               
+                <div class="col-sm-2">
+                    <div class="form-group input-group-sm m-0">
+                        <label for="tipo_comprob" class="text-muted" style="margin-bottom: 0px;">TIPO COMPROBANTE</label>
+                            {{ form.tipo_comprob }}
+                    </div>
+                </div>     
+                <div class="col-sm-2">
+                    <div class="form-group input-group-sm">
+                        <label for="num_comprob" class="text-muted" style="margin-bottom: 0px;">Nº COMPROBANTE</label>
+                        {{form.num_comprob|attr:"autocomplete:off"}}
+                    </div>
+                </div> 
+                <div class="col-sm-2">
+                    <div class="input-group input-group-sm">
+                        <label for="fecha_ingreso" class="text-muted" style="margin-bottom: 0px;">FECHA:</label>
+                        <div class="input-group" id="fecha_ingreso" data-target-input="nearest">
+                         {{ form.fecha_ingreso }}
+                            <div class="input-group-append" data-target="#fecha_ingreso" data-toggle="datetimepicker">                                
+                                <div class="input-group-text input-flat p-0 m-0" style="width: 25px; height: 28px;"><i class="far fa-calendar-alt m-auto"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>               
+            </div>
+            <div class="row">
+                {% if action == 'edit' %}
+                    <div class="col-sm-6">
+                        <div class="form-group input-group-sm m-0">
+                            <label for="almacenes" class="text-muted" style="margin-bottom: 0px;"> ALMACÉN</label>
+                                {{ form.almacen|attr:"disabled:true" }}
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="col-sm-6">
+                        <div class="form-group input-group-sm m-0">
+                            <label for="almacenes" class="text-muted" style="margin-bottom: 0px;">ALMACÉN</label>
+                                {{ form.almacen }}
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="col-sm-6">
+                    <div class="form-group input-group-sm m-0">
+                        <label for="proveedor" class="text-muted" style="margin-bottom: 0px;"> PROVEEDOR:</label>
+                        <div class="input-group" style="height: 28px">
+                            {{ form.proveedor }}
+                            <div class="input-group-append">
+                                <button class="btn btn-sm btn-primary btnAddProvee btn-flat" type="button" style="height: 29px;">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>               
+                                       
+            </div>
+            <div class="row" style="margin-top: 5px;">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-3 my-auto p-0 m-0" style="text-align: right; font-size: 11px;"><span class="font-weight-bold text-muted">RESPONSABLE:</span> </div>
+                        <div class="col-sm-9">{{ form.respon_almac|attr:"readonly:true" }}</div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    
+                </div>
+            </div>
+
+            <div class="row mt-2 text-center align-items-center justify-content-center">
+                <div class="col-sm-10">
+                    <div class="input-group input-group-sm">
+                        <label for="observ" class="text-muted" style="margin-bottom: 0px;">OBSERVACIÓN:</label>
+                            {{ form.observ }}                       
+                    </div>                   
+               </div>  
+               <div class="col-lg-2">
+               </div>             
+            </div>
+        </div>        
+        <div class="row pt-1" >
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card mb-0 input-flat elevation-0">
+                    <div class="card-header" style="background-color: #f5f5f5; padding: 5px 0px 3px 10px; font-size: 16px;">
+                        <b style="color: #181e30b3;"><i class="fa fa-cart-plus"></i> Detalle de la Incorporación</b>       
+                    </div>                    
+                    <div class="card-body" style="padding: 14px 10px 10px 10px;">                        
+                        <label for="buscador" style="margin-bottom: 0px;" class="text-muted mt-1"><i class="fas fa-search"></i> BUSQUEDA DE PRODUCTOS</label>                    
+                        <div class="input-group">                            
+                            <select class="form-control select2 input-flat" name="search"></select>
+                            <div class="input-group-append">
+                                <button class="btn btn-primary btn-sm dropdown-toggle btn-flat" type="button"
+                                data-toggle="dropdown" style="height: 30px;"><i class="fas fa-tasks"></i>                                    
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item btnSearchProducts">
+                                    <i class="fas fa-search"></i> Buscar productos
+                                </a>                                    
+                                <a class="dropdown-item btnRemoveAll">
+                                    <i class="fas fa-trash"></i> Eliminar todos mis items
+                                </a>
+                            </div>                                
+                            </div>
+                        </div>
+                        <br>  
+                        <div class="table-wrapper">
+                            <table class="table table-bordered max-cont table-hover table-sm" style="width:100%; font-size: 11px; margin-left: 0px; margin-right: 0px" id="tblProducts">
+                                <thead>
+                                    <tr style="font-size: 10px;">
+                                        <th scope="col" style="width: 3%;" class="m-auto"><i class="fas fa-trash"></i></th>
+                                        <th scope="col" style="width: 8%;">CODIGO</th>
+                                        <th scope="col" style="width: 35%;">PRODUCTO</th>
+                                        <th scope="col" style="width: 17%;">PRECIO</th>
+                                        <th scope="col" style="width: 13%;">CANTIDAD</th>
+                                        <th scope="col" style="width: 13%;">IVA</th>
+                                        <th scope="col" style="width: 11%;">SUBTOTAL</th>
+                                    </tr>
+                                </thead>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                        <tbody style="font-size: 11px;">
+    
+                                        </tbody>
+                                    </div>
+                                </div>                            
+                            </table>
+                        </div>
+                    </div>                    
+                    <div class="row" style="margin-top: 3px; margin-left: 0px; margin-right: 0px;">
+                        
+                        <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                            <div class="input-group">
+                                <div class="input-group-prepend" style="height: 27px;">
+                                <span class="input-group-text input-flat" style="font-size: 14px;"><b>SUBTOTAL</b></span>
+                                </div>
+                                {{ form.subtotal }}
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                            <div class="input-group">
+                                <div class="input-group-prepend" style="height: 27px;">
+                                <span class="input-group-text input-flat" style="font-size: 14px;"><b>{{iva.nameimpuesto}}%</b></span>
+                                </div>
+                                <input type="text" class="form-control input-flat" style="height: 27px; font-size: 15px;" readonly name="iva" id="idiva" value= "{{ iva.iva|safe}}">
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                            <div class="input-group">
+                                <div class="input-group-prepend" style="height: 27px;">
+                                <span class="input-group-text input-flat" style="font-size: 14px;"><b>IVA CALCULADO</b></span>
+                                </div>
+                                <input type="text" class="form-control input-flat" style="height: 27px;" readonly name="ivacalc" value="0.00">
+                            </div>
+
+                        </div>
+                        <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                            <div class="input-group">
+                                <div class="input-group-prepend" style="height: 27px;">
+                                <span class="input-group-text input-flat" style="font-size: 14px;"><b>TOTAL</b></span>
+                                </div>
+                                {{ form.total }}
+                            </div>
+
+                        </div>
+                    </div>                            
+                </div>
+            </di>
+        </div> 
+    </div>
+    <div class="card-footer mt-3">
+        <button type="submit" class="btn btn-primary btn-sm">
+           <i class="fas fa-save"></i> Guardar registro
+        </button>
+       <a href="{{ list_url }}" class="btn btn-danger btn-sm ml-2">
+       <i class="fas fa-times"></i> Cancelar
+       </a>
+    </div>
+    
+           
+
+</form>
+
+<div id="mostrarmodalproveedor">
+    {% include 'proveedor/form_modalproveedor.html' %}
+</div>
+<div id="mostrarmodalproductos">
+    {% include './catalogo.html' %}
+</div>
+<div id="mostrarmodalconcepmov">
+    {% include 'concepmov/modal_addconcepmov.html' %}
+</div>
+<div>
+    {% include './modal_serial.html' %}
+    {% include './modal_lotes.html' %}
+</div>
+    
+{% endblock %}
+
+{% block javascript_form %}
+ 
+  <script src="{% static 'ingreso_prod/js/form.js' %}" type="text/javascript"></script>
+  
+  <script>      
+      // el metodo safe se utiliza para parcear los datos de la respuesta o consulta QUE ESTAN LLEGANDO
+    ingresos.items.productos = {{ det|safe }};
+    
+</script>
+{% endblock %}

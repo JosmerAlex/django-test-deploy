@@ -1,0 +1,59 @@
+{% load widget_tweaks %}
+<div class="modal fade" id="myModalMoneda" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form id="frmMoneda" action="."  method="post" style="line-height: 12px;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header py-2" style="background-color: #049DD9;">
+                    <h5 class="modal-title title-custom text-white" id="titlemoneda">
+                        <b><i class="fas fa-plus"></i> <span> gg </span></b>
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        {% csrf_token %}
+                        <input name="action" type="hidden" value="add">
+                        <input name="id" id="id" type="hidden" value="0">                        
+                        <div class="row"> 
+                            <div class="col-12"> 
+                                <div class="form-group input-group-sm">
+                                    <label for="nombre" class="text-muted tl">CÓDIGO:</label>
+                                    {{ frmMoneda.codigo }}                                        
+                                </div>
+                                <div class="form-group input-group-sm">
+                                    <label for="nombre" class="text-muted tl">NOMBRE DE LA MONEDA:</label>
+                                    {{ frmMoneda.moneda }}                                           
+                                </div>
+                                <div class="form-group input-group-sm" >
+                                    <label for="nombre" class="text-muted tl">SÍMBOLO:</label>
+                                    {{ frmMoneda.simbolo }}                                      
+                                </div>                                    
+                                <div class="form-group input-group-sm" >
+                                    <label for="responsable" class="text-muted tl">PAÍS:</label>
+                                    {{ frmMoneda.pais|attr:'onkeypress:return Solo_Texto(event);' }}                                       
+                                </div>
+                                <div class="form-group input-group-sm" >
+                                    <label for="cedula" class="text-muted tl">TASA DE CAMBIO:</label>                                        
+                                    {{ frmMoneda.tasa_cambio|add_class:'form-control'}}                                        
+                                </div> 
+                                <div class="form-group input-group-sm" >
+                                    <div class="custom-control custom-checkbox">
+                                        {{ frmMoneda.status}}   
+                                        <label for="idstatus" class="custom-control-label  text-muted tl">STATUS</label>                                 
+                                    </div>                                                                         
+                                </div>    
+                            </div>    
+                        </div>                       
+                    
+                    </div>
+                </div>
+                <div class="modal-footer py-1">
+                    <button type="submit" class="btn btn-primary btn-sm btn-block"><i class="fas fa-save"></i> Guardar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

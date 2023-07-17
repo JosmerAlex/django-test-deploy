@@ -1,0 +1,46 @@
+{% load static %}
+<head>
+    <style>
+        .scroll-y {
+            max-height: calc(100vh - 210px);
+            overflow-y: scroll;
+        }     
+    </style>
+</head>
+<div class="modal fade" id="access_users" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header py-2 h-blue">
+				<h5 class="modal-title title-custom text-white" id="access_user"><b><i class="fas fa-info-circle"></i></i> Accesos del Usuario</b></h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+			</div>                     			  
+			<div class="modal-body">
+                <div class="container">                    
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <div class="scroll-h">                                
+                                <table class="table table-bordered table-hover table-sm" id="tblAccessUsers">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">FECHA</th>
+                                        <th scope="col">HORA</th>
+                                        <th scope="col">IP</th>
+                                        <th scope="col">NAVEGADOR</th>
+                                        <th scope="col">DISPOSITIVO</th>
+                                        <th scope="col">TIPO DE ACCESO</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody style="font-size: 13px;">
+                                    </tbody>
+                                </table>                                                                    
+                            </div>                                               
+                        </div>
+                    </div>
+                </div>                                                                                       
+                    <!-- /.row -->                        
+            </div>														
+		</div>                      
+	</div>
+</div>

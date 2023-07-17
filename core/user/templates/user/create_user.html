@@ -1,0 +1,335 @@
+{% extends 'componentes/form.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block head_form %}	
+	<style>
+		.form-label{
+			color: black;
+		}
+		.select2-container .select2-selection--single {
+        	height: 30px !important;
+        	border-radius: 0px !important;
+    	}
+		.bord {
+        	border: 1px solid #ced4da !important;
+    	}		
+		.table th {
+			color: #222a42b3;
+			text-align: inherit;
+			vertical-align: top;
+		}
+		.table thead th {
+			vertical-align: middle;
+			font-size: 12px;
+			border-top: 1px solid #f5f5f5;
+			border-bottom: 1px solid #d4d4d4!important;
+			padding-top: 0.560rem;
+			padding-bottom: 0.560rem;
+			line-height: 1;
+		}
+		.table>tbody>tr>td {
+			vertical-align: middle;
+			padding-top: 0.325rem;
+			padding-bottom: 0.325rem;
+		}	
+	
+		@media screen and (min-height: 600px) {
+		.scroll-v table {       
+			width: 100%;
+			border-collapse: collapse;
+		}
+		.scroll-v tbody {
+			display: block;
+			max-height: 300px; /* ajusta la altura máxima según tus necesidades */
+			overflow-y: auto;
+		}
+		.scroll-v tr {
+			display: table;
+			width: 100%;
+			table-layout: fixed;
+			border-collapse: collapse;
+		}
+		.scroll-v::-webkit-scrollbar {
+			width: 7px;
+			height: 6px;
+		}
+		.scroll-v::-webkit-scrollbar-thumb{
+			background: #8296a8;
+			border-radius: 7px;
+		}
+		td:first-child {
+			width: 10%;
+		}
+
+		td:nth-child(2) {
+			width: 90%;
+		}
+	}	
+	/* Estilos generales para los checkboxes */
+	input[type="checkbox"] {
+    /* ocultar el checkbox original */
+    	display: none;
+  	}  
+  	/* Estilos para la apariencia del checkbox personalizado */
+	.checkbox-container {
+		display: inline-block;
+		position: relative;
+		padding-left: 25px;
+		margin-bottom: 12px;
+		cursor: pointer;
+		font-size: 18px;
+	}	
+	/* Estilizar el aspecto del checkbox */
+	.checkbox-container .checkmark {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 20px;
+		width: 20px;
+		background-color: rgb(226, 226, 226);
+		border-radius: 50%;
+	}	
+	/* Estilizar la apariencia cuando el checkbox está seleccionado */
+	.checkbox-container input:checked ~ .checkmark {
+		background-color: #2196F3;
+	}	
+	/* Estilizar el tick del checkbox */
+	.checkbox-container .checkmark:after {
+		content: "";
+		position: absolute;
+		display: none;
+	}	
+	/* Mostrar el tick cuando el checkbox está seleccionado */
+	.checkbox-container input:checked ~ .checkmark:after {
+		display: block;
+	}	
+	/* Estilos para el tick en sí */
+	.checkbox-container .checkmark:after {
+		left: 7px;
+		top: 3px;
+		width: 6px;
+		height: 12px;
+		border: solid white;
+		border-width: 0 3px 3px 0;
+		transform: rotate(45deg);
+	}	
+	/* Estilos de animación al seleccionar */
+	.checkbox-container .checkmark {
+		transition: all 0.3s ease-in-out;
+	}	
+	/* Cambiar el color del checkbox al pasar el ratón por encima */
+	/* .checkbox-container:hover input ~ .checkmark {
+		background-color: #ccc;
+	} */
+	</style>
+{% endblock head_form %}
+
+{% block title %}
+<div class="col-lg-6">
+
+</div>
+{% endblock %}
+
+{% block content %}
+<!-- Basic Layout -->
+<form method="post" action="." enctype="multipart/form-data" id="formuser" name="formuser">  
+    <div class="row">
+		<div class="col-md-9">
+			<div class="card card-shadow">
+				<div class="card-header">
+					<h3 class="card-title">
+						{% if action == 'add' %}					
+						<i class="fas fa-plus"></i>
+						{% else %}
+						<i class="fas fa-edit"></i>
+						{% endif %}
+						<b>{{title}}</b>
+					</h3>
+				</div>
+				<div class="card-body register-card-body">
+					{% csrf_token %}
+					<input type="hidden" name="action" value="{{ action }}">
+					<input type="hidden" name="id" value="{{ id }}">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col">							
+								<div class="row">
+									<div class="col-md-6">										
+										<div class="mb-3 form-password-toggle">
+											<label class="form-label" for="nombres">Nombres:</label>
+											<div class="input-group mb-3">
+												{{ form.first_name|add_class:'form-control'|attr:'autocomplete:off'|attr:'onkeypress:return Solo_Texto(event);' }}													
+												<div class="input-group-append">
+													<div class="input-group-text">
+													  <span class="fas fa-signature"></span>
+													</div>
+												  </div>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="mb-3 form-password-toggle">
+											<label class="form-label" for="apellidos">Apellidos:</label>
+											<div class="input-group input-group-merge">
+												{{ form.last_name|add_class:'form-control'|attr:'autocomplete:off'|attr:'onkeypress:return Solo_Texto(event);' }}
+												<div class="input-group-append">
+													<div class="input-group-text">
+													  <span class="fas fa-signature"></span>
+													</div>
+												  </div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row g-2">
+									<div class="col-md-6">
+										<div class="mb-3 form-password-toggle">
+											<label class="form-label" for="cedula">Cedúla</label>
+											<div class="input-group input-group-merge">
+												{{ form.dni|add_class:'form-control'|attr:'required'|attr:'autocomplete:off'|attr:'onkeypress:return Solo_Numero_ci(event);'|attr:'maxlength:8'|attr:'minlength:8' }}
+												<div class="input-group-append">
+													<div class="input-group-text">
+													  <span class="fas fa-sort-numeric-down"></span>
+													</div>
+												  </div>														
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="mb-3 form-password-toggle">
+											<label class="form-label" for="email">Email</label>
+											<div class="input-group input-group-merge">
+												{{ form.email|add_class:'form-control'|attr:'autocomplete:off'|attr:'required' }}
+												<div class="input-group-append">
+													<div class="input-group-text">
+														<span class="fas fa-envelope"></span>
+													</div>
+												  </div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row g-2">
+									<div class="col-md-6">
+										<div class="mb-3 form-password-toggle">
+											<label class="form-label" for="nombre de usuario">Nombre de Usuario</label>
+											<div class="input-group input-group-merge">
+												{{ form.username|add_class:'form-control'|attr:'autocomplete:off' }}
+												<div class="input-group-append">
+													<div class="input-group-text">
+													  <span class="fas fa-user"></span>
+													</div>
+												  </div>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="mb-3 form-password-toggle">
+											<label class="form-label" for="contraseña">Contraseña</label>
+											<div class="input-group input-group-merge">
+												{{ form.password|add_class:'form-control'|attr:'autocomplete:off' }}
+												<div class="input-group-append">
+													<div class="input-group-text">
+													  <span class="fas fa-lock"></span>
+													</div>
+												  </div>
+											</div>
+										</div>
+									</div>
+								</div>                                              
+								<div class="row">
+									<div class="col select2-gray">
+										<label class="form-label" for="id_groups">Rol del Usuario</label>
+										{{ form.groups|add_class:'form-control'|attr:'multiple:multiple'}}
+									</div>
+								</div>																		
+								<div class="row g-2 mt-3">
+									<div class="col">
+										<label class="form-label" for="id_groups">Permisos Exclusivos</label>
+										<button type="button" class="btn form-control btnPerms bord text-secondary">
+											<span id="lenghtPerm"></span>	
+										</button>									
+									</div>												
+								</div>																	
+								<br>
+								<div class="row g-2" style="margin-top: -10px;">
+									<div class="col">
+										<div class="custom-control custom-checkbox">
+											{{ form.is_active }}
+											<label for="idactive" class="custom-control-label" for="id_activo">Activo</label>
+										</div>									
+									</div>	
+								</div>																					
+							</div>
+						</div>	
+					</div>
+				</div>
+				<div class="card-footer" style="border-top: 1px solid #dee2e6;">
+					<button type="submit" class="btn btn-primary">
+						<i class="fas fa-save"></i> Guardar Registro
+					</button>
+					<a href="{{ list_url }}" class="btn btn-danger">
+						<i class="fas fa-times"></i> Cancelar
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="card card-shadow">				
+				<div class="card-body">								
+					<div class="container-fluid">									
+						<div class="container-fluid">										
+							{% if object.image %}
+								<div style="font-size: 12px;" class="mt-1 text-center">												
+									<img src="{{object.image.url}}" class="img-fluid img-shadow" alt="Imagen" name="imagenPrevisualizacion" id="imagenPrevisualizacion" style="margin-top: 0px; margin-bottom: 2px;" height="200px" width="200px">
+									<!-- {{form.imagen}} -->
+								</div>
+							{% else %}
+								<div style="font-size: 12px;" class="mt-1 text-center">												
+									<img src="/media/users/img/sin_imagen_2.png" class="img-fluid img-shadow" alt="Imagen" name="imagenPrevisualizacion" id="imagenPrevisualizacion" style="margin-top: 0px; margin-bottom: 2px;" height="200px" width="200px">
+								</div>
+							{% endif %}																					
+						</div>									
+						
+					</div>
+				</div>
+				<div class="card-footer">
+					{{form.image|add_class:'form-control'|attr:'type:file'|attr:'id:seleccionArchivos'|attr:'style: font-size:12px'}}
+				</div>
+			</div>
+		</div>
+
+	</div>
+</form>
+
+{% include './perms.html' %}
+
+{% endblock %}
+{% block javascript_form %}
+<script src="{% static 'user/js/form.js' %}"></script>
+<script>      	
+	user.data.user_permissions = {{ perms|safe }};
+</script>
+<script type="application/javascript">
+	const $seleccionArchivos = document.querySelector("#seleccionArchivos"),
+    $imagenPrevisualizacion = document.querySelector("#imagenPrevisualizacion");
+    // Escuchar cuando cambie
+    $seleccionArchivos.addEventListener("change", () => {
+    // Los archivos seleccionados, pueden ser muchos o uno
+    const archivos = $seleccionArchivos.files;
+    // Si no hay archivos salimos de la función y quitamos la imagen
+    if (!archivos || !archivos.length) {
+        $imagenPrevisualizacion.src = "";
+        return;
+    }
+    // Ahora tomamos el primer archivo, el cual vamos a previsualizar
+    const primerArchivo = archivos[0];
+    // Lo convertimos a un objeto de tipo objectURL
+    const objectURL = URL.createObjectURL(primerArchivo);
+    // Y a la fuente de la imagen le ponemos el objectURL
+    $imagenPrevisualizacion.src = objectURL;
+    });
+</script>
+
+{% endblock %}

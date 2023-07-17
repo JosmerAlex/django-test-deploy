@@ -1,0 +1,23 @@
+{% extends 'list.html' %}
+{% load static %}
+{% block columns %}
+    <tr>
+        <th scope="col" style="width: 10%;">CÓDIGO</th>
+        <th scope="col" style="width: 35%;">NOMBRE</th>
+        <th scope="col" style="width: 25%;">RESPONSABLE</th>
+        <th scope="col" style="width: 15%;">CÉDULA</th>
+        <th scope="col" style="width: 15%;">OPCIONES</th>
+    </tr>
+{% endblock %}
+
+{% block rows %}
+
+{% endblock %}
+{% block add_modales %}
+    <div>
+        {% include 'almacen/modal_addalmacen.html' %}
+    </div>
+{% endblock %}
+{% block javascript_list %}
+<script src="{% static 'almacen/js/list.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,26 @@
+@media screen and (min-height: 600px) {
+	  
+	.scroll-v table {       
+	width: 100%;
+	border-collapse: collapse;
+}
+.scroll-v tbody {
+	display: block;
+	max-height: 300px; /* ajusta la altura máxima según tus necesidades */
+	overflow-y: auto;
+}
+
+.scroll-v tr {
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+}
+.scroll-v td:first-child {
+	width: 10%;
+}
+
+.scroll-v td:nth-child(2) {
+	width: 90%;
+}
+}	

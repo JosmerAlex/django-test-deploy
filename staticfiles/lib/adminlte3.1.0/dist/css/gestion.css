@@ -1,0 +1,95 @@
+
+ #tblProducts td, th {
+     vertical-align: middle;
+     padding-top: 0px;
+     padding-bottom: 0px;
+     margin: 0px;
+  }
+
+  #productos td, th {
+    vertical-align: middle;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin: 0px;
+    font-size: 10px;
+ }
+ #tablaingre_prod td, th {
+  vertical-align: middle;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin: 0px;
+  font-size: 10px;
+}
+#tblDetalleProd td, th {
+  vertical-align: middle;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin: 0px;
+  font-size: 10px;
+}
+
+
+.cuerpobody{
+
+  background-color: #ffffff; 
+  padding-top: 0px; 
+  font-family: Arial; 
+  font-size: 12px; 
+  line-height: 12px; 
+  color: #444; 
+  
+   margin-top: 3px;
+   margin-bottom: 3px;
+  
+   padding-bottom: 0px; 
+  
+ }
+ .cuerpobody .imagencreada {
+  /*sup - dere - infe - izq*/
+   padding:0px; 
+   overflow: hidden;
+   margin: auto;
+ }
+
+  .conteadicional {
+    margin: 0px;
+   
+  }
+
+ .cuerpobody .form-group {
+   margin-bottom: 10px;
+ }
+ .cuerpobody .form-group label {
+   margin-bottom: 3px;
+ }
+
+ /*sup - dere - infe - izq*/
+.cuerpobody .conteadicional .form-group {
+   padding: 0em;
+   margin: 0px 0px 5px 5px;
+ }
+ .cuerpobody .conteadicional .form-group label {
+   margin-bottom: 3px;
+ }
+ .cuerpobody .imagencreada {
+   /*sup - dere - infe - izq*/
+    padding:0px; 
+    overflow: hidden;
+    margin: auto;
+}
+ .imagencreada img {
+   background-repeat:no-repeat;
+   display:block;
+   margin:auto; 
+   }
+   /* para mostar iconos del detalle de Ingresos de producto*/
+td.details-control {
+    /* background: url('../lib/adminlte3.1.0/plugins/datatables/images/details_open.png') no-repeat center center; */
+    background: url('../img/details_open.png') no-repeat center center;
+
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    /* background: url('../lib/adminlte3.1.0/plugins/datatables/images/details_close.png') no-repeat center center; */
+    background: url('../img/details_close.png') no-repeat center center;
+}
